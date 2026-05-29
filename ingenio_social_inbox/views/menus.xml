@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Menú raíz ──────────────────────────────────────────────────── -->
+    <menuitem
+        id="menu_social_inbox_root"
+        name="Social Inbox"
+        sequence="50"/>
+
+    <!-- ── Inbox (conversaciones sin leer primero) ────────────────────── -->
+    <menuitem
+        id="menu_social_inbox"
+        name="Inbox"
+        parent="menu_social_inbox_root"
+        action="action_social_conversation"
+        sequence="10"/>
+
+    <!-- ── Todas las conversaciones ──────────────────────────────────── -->
+    <menuitem
+        id="menu_social_conversation_all"
+        name="Todas las Conversaciones"
+        parent="menu_social_inbox_root"
+        action="action_social_conversation_all"
+        sequence="20"/>
+
+    <!-- ── Configuración ─────────────────────────────────────────────── -->
+    <menuitem
+        id="menu_social_config"
+        name="Configuración"
+        parent="menu_social_inbox_root"
+        sequence="90"/>
+
+    <menuitem
+        id="menu_social_accounts"
+        name="Cuentas Conectadas"
+        parent="menu_social_config"
+        action="action_social_account"
+        sequence="10"/>
+
+</odoo>

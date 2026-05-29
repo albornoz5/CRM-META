@@ -1,0 +1,116 @@
+/* ── Social Inbox — Chat UI ──────────────────────────────────────── */
+
+/* Limpia el padding del widget html de Odoo cuando está en el chat */
+.si-chat-container .o_field_html,
+.si-chat-container .odoo-editor-editable,
+.si-chat-container .odoo-editor-container {
+    padding: 0 !important;
+    min-height: unset !important;
+    border: none !important;
+}
+
+/* Contenedor del chat */
+.si-chat-container {
+    display: flex;
+    flex-direction: column;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 12px;
+    min-height: 300px;
+    max-height: 520px;
+    overflow-y: auto;
+    gap: 4px;
+}
+
+/* Wrapper de cada mensaje */
+.si-msg-wrapper {
+    display: flex;
+    margin: 3px 0;
+}
+
+.si-msg-in {
+    justify-content: flex-start;
+}
+
+.si-msg-out {
+    justify-content: flex-end;
+}
+
+/* Burbuja del mensaje */
+.si-msg-bubble {
+    max-width: 68%;
+    padding: 8px 12px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.si-msg-in .si-msg-bubble {
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #dee2e6;
+    border-bottom-left-radius: 4px;
+}
+
+.si-msg-out .si-msg-bubble {
+    background-color: #0084ff;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+/* Texto del mensaje */
+.si-msg-body {
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* Metadatos: autor y hora */
+.si-msg-meta {
+    font-size: 11px;
+    margin-top: 4px;
+    opacity: 0.65;
+    text-align: right;
+}
+
+.si-msg-in .si-msg-meta {
+    text-align: left;
+}
+
+/* Mensaje de estado vacío */
+.si-empty {
+    text-align: center;
+    color: #adb5bd;
+    font-size: 13px;
+    padding: 40px 0;
+    margin: 0;
+}
+
+/* ── Inbox list — badges de plataforma ───────────────────────────── */
+.si-badge-facebook {
+    background-color: #1877f2;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.si-badge-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Indicador de no leído */
+.si-unread-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #0084ff;
+    vertical-align: middle;
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List view ─────────────────────────────────────────────────── -->
+    <record id="view_social_account_list" model="ir.ui.view">
+        <field name="name">social.account.list</field>
+        <field name="model">social.account</field>
+        <field name="arch" type="xml">
+            <list string="Cuentas Conectadas">
+                <field name="name"/>
+                <field name="platform"/>
+                <field name="page_id"/>
+                <field name="conversation_count" string="Conversaciones"/>
+                <field name="unread_count" string="Sin leer"/>
+                <field name="active" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form view ─────────────────────────────────────────────────── -->
+    <record id="view_social_account_form" model="ir.ui.view">
+        <field name="name">social.account.form</field>
+        <field name="model">social.account</field>
+        <field name="arch" type="xml">
+            <form string="Cuenta de Red Social">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Ej: Página Facebook El Garage"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Configuración">
+                            <field name="platform"/>
+                            <field name="page_id"
+                                   help="Encontralo en Meta for Developers → tu App → Webhooks"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Estadísticas">
+                            <field name="conversation_count"/>
+                            <field name="unread_count"/>
+                        </group>
+                    </group>
+
+                    <group string="Credenciales Meta">
+                        <field name="access_token" password="True"
+                               help="Page Access Token permanente. Obtenelo desde el Graph API Explorer."/>
+                        <field name="verify_token"
+                               help="Texto secreto que configurás en el webhook de Meta. Puede ser cualquier valor."/>
+                        <field name="app_secret" password="True"
+                               help="Opcional. Permite verificar la firma de cada webhook para mayor seguridad."/>
+                    </group>
+
+                    <div class="alert alert-info" role="alert">
+                        <strong>URL del Webhook:</strong>
+                        <code>https://TU-DOMINIO-ODOO/social/meta/webhook</code>
+                        <br/>
+                        Configurá esta URL en Meta for Developers → tu App → Webhooks.
+                        Suscribite a los eventos: <strong>messages</strong> y <strong>messaging_postbacks</strong>.
+                    </div>
+
+                    <notebook>
+                        <page string="Conversaciones" name="conversations">
+                            <field name="conversation_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                    <field name="last_message"/>
+                                    <field name="last_message_date"/>
+                                    <field name="unread"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Action ────────────────────────────────────────────────────── -->
+    <record id="action_social_account" model="ir.actions.act_window">
+        <field name="name">Cuentas Conectadas</field>
+        <field name="res_model">social.account</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Conectá tu primera cuenta de Facebook o Instagram
+            </p>
+            <p>
+                Necesitás una Página de Facebook con cuenta de Instagram Business vinculada
+                y un Page Access Token desde Meta for Developers.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_social_account_user,social.account user,model_social_account,base.group_user,1,0,0,0
+access_social_account_manager,social.account manager,model_social_account,base.group_system,1,1,1,1
+access_social_conversation_user,social.conversation user,model_social_conversation,base.group_user,1,1,1,0
+access_social_conversation_manager,social.conversation manager,model_social_conversation,base.group_system,1,1,1,1
+access_social_message_user,social.message user,model_social_message,base.group_user,1,1,1,0
+access_social_message_manager,social.message manager,model_social_message,base.group_system,1,1,1,1
