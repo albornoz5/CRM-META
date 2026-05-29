@@ -44,7 +44,7 @@ class SocialConversation(models.Model):
     last_message = fields.Text('Último Mensaje')
     last_message_date = fields.Datetime('Fecha Último Mensaje')
     unread = fields.Boolean('Sin Leer', default=True)
-    message_ids = fields.One2many('social.message', 'conversation_id', string='Mensajes')
+    social_message_ids = fields.One2many('social.message', 'conversation_id', string='Mensajes')
     message_count = fields.Integer(compute='_compute_message_count', string='Mensajes')
 
     # Campo de respuesta del vendedor
@@ -69,16 +69,16 @@ class SocialConversation(models.Model):
     @api.depends('message_ids')
     def _compute_message_count(self):
         for rec in self:
-            rec.message_count = len(rec.message_ids)
+            rec.message_count = len(rec.social_message_ids)
 
     @api.depends(
-        'message_ids', 'message_ids.body', 'message_ids.direction',
-        'message_ids.timestamp', 'message_ids.author_name', 'sender_name',
+        'social_message_ids', 'social_message_ids.body', 'social_message_ids.direction',
+        'social_message_ids.timestamp', 'social_message_ids.author_name', 'sender_name',
     )
     def _compute_messages_html(self):
         for rec in self:
             parts = []
-            for msg in rec.message_ids.sorted('timestamp'):
+            for msg in rec.social_message_ids.sorted('timestamp'):
                 is_out = msg.direction == 'outbound'
                 wrapper_cls = 'si-msg-out' if is_out else 'si-msg-in'
                 author = escape(
@@ -172,7 +172,7 @@ class SocialConversation(models.Model):
             }
 
         transcript_lines = []
-        for msg in self.message_ids.sorted('timestamp'):
+        for msg in self.social_message_ids.sorted('timestamp'):
             author = msg.author_name or ('Vendedor' if msg.direction == 'outbound' else self.sender_name)
             time_str = msg.timestamp.strftime('%d/%m/%Y %H:%M') if msg.timestamp else ''
             transcript_lines.append(f'[{time_str}] {author}: {msg.body}')
