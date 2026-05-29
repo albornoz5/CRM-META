@@ -36,6 +36,9 @@
                             <field name="platform"/>
                             <field name="page_id"
                                    help="Encontralo en Meta for Developers → tu App → Webhooks"/>
+                            <field name="facebook_page_id"
+                                   invisible="platform != 'instagram'"
+                                   help="Solo Instagram: ID de la Página de Facebook vinculada. Ej: 269148316453787"/>
                             <field name="active"/>
                         </group>
                         <group string="Estadísticas">

@@ -14,9 +14,13 @@ class SocialAccount(models.Model):
         'ID de Página/Cuenta', required=True,
         help='El ID numérico de la Página de Facebook o cuenta de Instagram Business.',
     )
+    facebook_page_id = fields.Char(
+        'Facebook Page ID (solo Instagram)',
+        help='Solo para Instagram: ID numérico de la Página de Facebook vinculada (ej: 269148316453787). Requerido para enviar respuestas.',
+    )
     access_token = fields.Char(
         'Page Access Token', required=True,
-        help='Page Access Token permanente obtenido desde Meta for Developers.',
+        help='Facebook Page Access Token. Para Instagram usar el token de la Página de Facebook vinculada.',
     )
     verify_token = fields.Char(
         'Verify Token', required=True,

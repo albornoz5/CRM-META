@@ -140,7 +140,12 @@ class SocialConversation(models.Model):
         })
 
     def _send_to_meta(self, account, text):
-        url = f'https://graph.facebook.com/v19.0/{account.page_id}/messages'
+        if self.platform == 'instagram':
+            send_page_id = account.facebook_page_id or account.page_id
+        else:
+            send_page_id = account.page_id
+
+        url = f'https://graph.facebook.com/v19.0/{send_page_id}/messages'
         payload = {
             'recipient': {'id': self.sender_id},
             'message': {'text': text},
