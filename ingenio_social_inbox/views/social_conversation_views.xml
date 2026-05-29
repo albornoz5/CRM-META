@@ -10,18 +10,14 @@
                   decoration-primary="unread == True"
                   decoration-muted="state == 'closed'"
                   decoration-success="state == 'converted'">
-                <field name="unread" widget="boolean_favorite" nolabel="1" optional="show"/>
+                <field name="unread" string="Sin leer" optional="show"/>
                 <field name="platform" optional="show"/>
                 <field name="sender_name" string="Remitente"/>
                 <field name="account_id" string="Cuenta" optional="show"/>
                 <field name="last_message" string="Último mensaje"/>
                 <field name="last_message_date" string="Fecha"/>
-                <field name="state" widget="badge"
-                       decoration-warning="state == 'new'"
-                       decoration-info="state == 'open'"
-                       decoration-success="state == 'converted'"
-                       decoration-secondary="state == 'closed'"/>
-                <field name="user_id" string="Vendedor" widget="many2one_avatar_user" optional="show"/>
+                <field name="state" widget="badge"/>
+                <field name="user_id" string="Vendedor" optional="show"/>
                 <field name="lead_id" optional="show"/>
             </list>
         </field>
