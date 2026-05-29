@@ -150,24 +150,16 @@
         <field name="model">social.conversation</field>
         <field name="arch" type="xml">
             <search string="Buscar conversaciones">
-                <field name="sender_name" string="Remitente"/>
-                <field name="last_message" string="Mensaje"/>
+                <field name="sender_name"/>
                 <field name="account_id"/>
-                <field name="user_id" string="Vendedor"/>
-                <filter name="filter_unread" string="Sin leer" domain="[('unread', '=', True)]"/>
-                <filter name="filter_new" string="Nuevos" domain="[('state', '=', 'new')]"/>
-                <filter name="filter_open" string="Abiertos" domain="[('state', '=', 'open')]"/>
-                <filter name="filter_converted" string="Convertidos" domain="[('state', '=', 'converted')]"/>
-                <filter name="filter_closed" string="Cerrados" domain="[('state', '=', 'closed')]"/>
-                <filter name="filter_facebook" string="Facebook" domain="[('platform', '=', 'facebook')]"/>
-                <filter name="filter_instagram" string="Instagram" domain="[('platform', '=', 'instagram')]"/>
-                <filter name="filter_my" string="Mis conversaciones" domain="[('user_id', '=', uid)]"/>
-                <group string="Agrupar por">
-                    <filter name="group_platform" string="Plataforma" context="{'group_by': 'platform'}"/>
-                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
-                    <filter name="group_account" string="Cuenta" context="{'group_by': 'account_id'}"/>
-                    <filter name="group_user" string="Vendedor" context="{'group_by': 'user_id'}"/>
-                </group>
+                <field name="user_id"/>
+                <filter name="filter_unread" string="Sin leer" domain="[('unread','=',True)]"/>
+                <filter name="filter_new" string="Nuevos" domain="[('state','=','new')]"/>
+                <filter name="filter_open" string="Abiertos" domain="[('state','=','open')]"/>
+                <filter name="filter_converted" string="Convertidos" domain="[('state','=','converted')]"/>
+                <filter name="filter_closed" string="Cerrados" domain="[('state','=','closed')]"/>
+                <filter name="filter_facebook" string="Facebook" domain="[('platform','=','facebook')]"/>
+                <filter name="filter_instagram" string="Instagram" domain="[('platform','=','instagram')]"/>
             </search>
         </field>
     </record>
