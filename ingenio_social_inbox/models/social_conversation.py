@@ -45,7 +45,7 @@ class SocialConversation(models.Model):
     last_message_date = fields.Datetime('Fecha Último Mensaje')
     unread = fields.Boolean('Sin Leer', default=True)
     social_message_ids = fields.One2many('social.message', 'conversation_id', string='Mensajes')
-    message_count = fields.Integer(compute='_compute_message_count', string='Mensajes')
+    social_message_count = fields.Integer(compute='_compute_message_count', string='Mensajes')
 
     # Campo de respuesta del vendedor
     reply_text = fields.Text('Respuesta')
@@ -66,10 +66,10 @@ class SocialConversation(models.Model):
             platform_label = dict(rec._fields['platform'].selection or []).get(rec.platform, '')
             rec.name = f"{rec.sender_name or rec.sender_id} · {platform_label}"
 
-    @api.depends('message_ids')
+    @api.depends('social_message_ids')
     def _compute_message_count(self):
         for rec in self:
-            rec.message_count = len(rec.social_message_ids)
+            rec.social_message_count = len(rec.social_message_ids)
 
     @api.depends(
         'social_message_ids', 'social_message_ids.body', 'social_message_ids.direction',
